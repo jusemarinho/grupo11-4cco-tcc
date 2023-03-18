@@ -67,11 +67,10 @@ def step_impl(context):
 
 @then("A stack devera ser criada com sucesso")
 def step_implt(context):
-    cf_client = boto3.client('cloudformation')
     stack_status = None
 
     while stack_status != 'CREATE_COMPLETE':
-        stack = cf_client.describe_stacks(StackName=context.stack_name)
+        stack = context.client.describe_stacks(StackName=context.stack_name)
         stack_status = stack['Stacks'][0]['StackStatus']
 
     assert stack_status == 'CREATE_COMPLETE'

@@ -3,7 +3,7 @@ import boto3
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
+load_dotenv(dotenv_path='')
 
 @given("Sou um desenvolvedor e configuro todos os tokens de acesso da AWS")
 def step_impl(context):

@@ -1,0 +1,3 @@
+[
+{"keyword": "Feature", "name": "Feature Description: Seguran\u00e7a do tr\u00e1fego de rede", "tags": [], "location": "features/traffic_network.feature:1", "status": "skipped", "description": ["Cen\u00e1rio: Verificar se o tr\u00e1fego de rede est\u00e1 criptografado", "Given que o tr\u00e1fego de rede est\u00e1 sendo enviado e recebido pela VPC", "When eu verifico o status da criptografia do tr\u00e1fego", "Then todo o tr\u00e1fego de rede deve estar criptografado"]}
+]

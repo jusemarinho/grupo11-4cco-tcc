@@ -4,22 +4,34 @@
 conseguiremos escanear o rosto, características e o fucinho de um pet perdido na rua, e se o dono tiver cadastrado o pet em nosso sistema, 
 por meio do reconehcimentovamos informar informações sobre o cachorro e como contatar o dono, para poder ser feito o resgate do animal.</p>
 
-<h3>Tecnologias utilizadas</h3>
-<ul>
-  <li>Python 3.11</li>
-  <li>Jupyter notebook</li>
-  <li>Pandas</li>
-  <li>Numpy</li>
-  <li>Haarcascade Frontal Cat Face</li>
-  <li>Scikit Learn</li>
-  <li>Behave</li>
-  <li>Boto3</li>
-  <li>Fordev</li>
-  <li>Pillow</li>
-  <li>tqdm</li>
-  <li>Dotenv</li>
-  <li>aiohttp</li>
-</ul>
+## Tecnologias utilizadas
+
+- Python 3.11 ![Python Version](https://img.shields.io/badge/Python-3.11-blue)
+
+- Jupyter notebook ![Jupyter Notebook](https://img.shields.io/badge/Jupyter-Notebook-orange)
+
+- Pandas ![Pandas Version](https://img.shields.io/badge/Pandas-Latest-brightgreen)
+
+- Numpy ![Numpy Version](https://img.shields.io/badge/Numpy-Latest-blue)
+
+- Haarcascade Frontal Cat Face ![Haarcascade Frontal Cat Face](https://img.shields.io/badge/Haarcascade-Frontal_Cat_Face-red)
+
+- Scikit Learn ![Scikit Learn Version](https://img.shields.io/badge/scikit--learn-Latest-blue)
+
+- Behave ![Behave Version](https://img.shields.io/badge/Behave-Latest-green)
+
+- Boto3 ![Boto3 Version](https://img.shields.io/badge/Boto3-Latest-yellow)
+
+- Fordev ![Fordev Version](https://img.shields.io/badge/Fordev-Latest-blue)
+
+- Pillow ![Pillow Version](https://img.shields.io/badge/Pillow-Latest-green)
+
+- tqdm ![tqdm Version](https://img.shields.io/badge/tqdm-Latest-yellow)
+
+- Dotenv ![Dotenv Version](https://img.shields.io/badge/Dotenv-Latest-red)
+
+- aiohttp ![aiohttp Version](https://img.shields.io/badge/aiohttp-Latest-blue)
+
 
 <h3>Como rodar o projeto</h3>
 <p>Ao fazer o clone do nosso projeto, instale as dependências python, contidas no arquivo requirements.txt usando o comando 

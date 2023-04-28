@@ -6,7 +6,7 @@ por meio do reconehcimentovamos informar informações sobre o cachorro e como c
 
 <h3>Tecnologias utilizadas</h3>
 <ul>
-  <li>Python</li>
+  <li>Python 3.11</li>
   <li>Jupyter notebook</li>
   <li>Pandas</li>
   <li>Numpy</li>
@@ -18,6 +18,7 @@ por meio do reconehcimentovamos informar informações sobre o cachorro e como c
   <li>Pillow</li>
   <li>tqdm</li>
   <li>Dotenv</li>
+  <li>aiohttp</li>
 </ul>
 
 <h3>Como rodar o projeto</h3>

@@ -58,3 +58,16 @@ por meio do reconehcimentovamos informar informações sobre o cachorro e como c
     um diretório e dentro terá o diretório para cada pet.
   </li>
 </ul>
+
+<h3>Contribuidores</h3>
+<p>
+ Este projeto foi feito por um grupo de colegas da faculdade SPTech School, afim de desenvolver nosso Trabalho de Conclusão de Curso.<br>
+ O grupo é composto por:
+</p>
+
+<ul>
+ <li><a href="https://github.com/jusebandtec">José Paulo Marinho</a></li>
+ <li><a href="https://github.com/jusebandtec">Kalil Bego Rocha</a></li>
+ <li><a href="https://github.com/PatrickLessa">Patrick Lessa Teixeira</a></li>
+ <li><a href="https://github.com/barbosa-victor">Victor Alves Barbosa</a></li>
+</ul>

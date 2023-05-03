@@ -4,7 +4,8 @@ REGION=us-central1
 RUNTIME=python311
 ENTRY_POINT=hello_http
 
-# Faz o deploy da função
+zip -r function.zip main.py
+
 gcloud functions deploy $FUNCTION_NAME \
     --project=$PROJECT_ID \
     --region=$REGION \

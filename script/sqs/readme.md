@@ -37,12 +37,11 @@ Aqui estão os passos para criar uma política de acesso para uma fila do Amazon
 6 - Lembre-se de substituir <b>'REGION'</b>, <b>'ACCOUNT-ID'</b>, <b>'QUEUE-NAME'</b> e <b>'BUCKET-NAME'</b> pelos valores reais correspondentes às suas configurações.
 
 6.1 - Para obter essas informações entre no console da aws (AWS CLI) e digite:
-```sh
-aws sts get-caller-identity
-```
-```
-aws configure get region
-```
+
+    $ aws sts get-caller-identity
+    $ aws configure get region
+    $ aws s3 ls
+    $ aws sqs list-queues 
 
 7 - Quando terminar, clique em "Salvar alterações" para aplicar a política à fila do SQS.
 
@@ -76,8 +75,7 @@ aws configure get region
 - Sufixo - Opcional (se nçao houver ele vai verificar todos os tipos de arquivos)
 
 
-4 - Tipos de Eventos <br>
-<code>Aqui você coloca o que preferir</code>
+4 - Tipos de Eventos - <code>Aqui você coloca o que preferir</code>
 
 5 -  Por fim, selecione o Destino, escolha <b>'Fila do SQS'</b>
 

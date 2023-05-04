@@ -16,6 +16,10 @@ def send_message(queue, message_body, message_attributes=None):
             MessageBody=message_body,
             MessageAttributes=message_attributes
         )
+
+        if response['ResponseMetadata']['HTTPStatusCode'] == 200:
+            print("Message published.")
+        
     except ClientError as error:
         logging.exception("Send message failed: %s", message_body)
         raise error
@@ -36,8 +40,10 @@ if __name__ == "__main__":
         aws_session_token=aws_access_token,
         region_name=aws_region_name
     )
+    
     sqs = session.resource('sqs')
     queue = sqs.get_queue_by_name(QueueName=queue_name)
+
     message = {
         "application": "python",
         "version": "1.0.0",

@@ -1,0 +1,26 @@
+version: "2.2"
+
+services:
+  mongo-dev:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: urubu100
+      MONGO_INITDB_DATABASE: ACBC_DEV
+    ports:
+      - "27017:27017"
+    volumes:
+      - /home/ec2-user/mongo_configuration/mongo_dev_data:/data/db
+
+  mongo-prod:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: urubu100
+      MONGO_INITDB_DATABASE: ACBC_PROD
+    ports:
+      - "27018:27017"
+    volumes:
+      - /home/ec2-user/mongo_configuration/mongo_prod_data:/data/db

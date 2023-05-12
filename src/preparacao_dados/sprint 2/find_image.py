@@ -36,7 +36,7 @@ class FindImage:
     def s3(self, bucket_name, resource: str):
         return resource.Bucket(bucket_name)
 
-    def find_image_by_id_user_id_name_pet(
+    def find(
         self, md5: str, user_id: str = None, id_pet: str = None, name_pet: str = None
     ):
         if self.flag:
@@ -61,4 +61,4 @@ class FindImage:
 
 if __name__ == "__main__":
     find_image = FindImage(flag=False)
-    find_image.find_image_by_id_user_id_name_pet('50fcbd042ae9a24e3afd5cbb8e1e4542')
+    find_image.find('50fcbd042ae9a24e3afd5cbb8e1e4542')

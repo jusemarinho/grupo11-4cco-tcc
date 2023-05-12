@@ -5,11 +5,13 @@ import os
 import matplotlib.pyplot as plt
 from PIL import Image
 from io import BytesIO
+import cv2
+import numpy as np
 
 load_dotenv()
 
 
-class FindImage:
+class FindImage():
     def __init__(
         self, flag: bool = None, bucket_name: str = None, resource_name: str = None
     ) -> None:
@@ -45,18 +47,18 @@ class FindImage:
             obj = self.s3_bucket.Object(image_key)
             image_data = obj.get()["Body"].read()
             image = Image.open(BytesIO(image_data))
+            image_array = np.array(image)
+            image = cv2.imread(image_array)
         else:
             # procurar fotos localmente
-            local_image_path = f"../../inteligencia_artificial/train/{md5}.jpg"
+            local_image_path = f"./train/{md5}.jpg"
             if os.path.exists(local_image_path):
-                image = Image.open(local_image_path)
+                image = cv2.imread(local_image_path)
             else:
                 print("A imagem não foi encontrada localmente.")
                 return
 
-        plt.imshow(image)
-        plt.axis("off")
-        plt.show()
+        return image
 
 
 if __name__ == "__main__":

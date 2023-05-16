@@ -11,7 +11,7 @@ import numpy as np
 load_dotenv()
 
 
-class FindImage():
+class FindImage:
     def __init__(
         self, flag: bool = None, bucket_name: str = None, resource_name: str = None
     ) -> None:
@@ -63,4 +63,4 @@ class FindImage():
 
 if __name__ == "__main__":
     find_image = FindImage(flag=False)
-    find_image.find('50fcbd042ae9a24e3afd5cbb8e1e4542')
+    find_image.find("50fcbd042ae9a24e3afd5cbb8e1e4542")

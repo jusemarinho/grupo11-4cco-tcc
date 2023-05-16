@@ -6,3 +6,5 @@ Pillow
 tqdm
 aioboto3
 pandas
+scikit-image
+plotly

@@ -8,3 +8,4 @@ aioboto3
 pandas
 scikit-image
 plotly
+tensorflow

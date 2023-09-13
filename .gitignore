@@ -2,3 +2,4 @@
 *train
 *.env
 /src/inteligencia_artificial/imgs_test
+/src/inteligencia_artificial/imgs_training

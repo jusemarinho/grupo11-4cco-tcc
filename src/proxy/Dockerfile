@@ -1,0 +1,14 @@
+FROM golang:latest
+
+ENV TARGET_HOST_PROXY_ACHEIOBICHO="127.0.0.1"
+ENV TARGET_PORT_PROXY_ACHEIOBICHO=8080
+
+WORKDIR /app
+
+COPY . .
+
+RUN go build -o proxy .
+
+EXPOSE 8080
+
+CMD ["./proxy"]

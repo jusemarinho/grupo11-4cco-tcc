@@ -27,7 +27,7 @@ func main() {
 		proxy.ServeHTTP(w, r)
 	})
 
-	proxyPort := "3000"
+	proxyPort := "8080"
 	fmt.Printf("Servidor proxy em execução em :%s\n", proxyPort)
 	err := http.ListenAndServe(":"+proxyPort, nil)
 	if err != nil {

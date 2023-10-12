@@ -1,7 +1,7 @@
 import boto3
 from dotenv import load_dotenv
 import os
-import json
+from json import loads
 import logging
 import schedule
 import time
@@ -11,14 +11,14 @@ load_dotenv()
 def receive_message(queue):
     try:
         messages = queue.receive_messages(MaxNumberOfMessages=10)
-
-        if not messages:
+        if len(messages) <= 0:
             print("Not messages to receive")
             return
 
         for message in messages:
-            message_body = message.body
-            print("Received message:", message_body)
+            message_body = loads(message.body)
+
+            print(message_body)
             message.delete()
     except Exception as error:
         logging.exception("Receive message failed.")
@@ -41,7 +41,7 @@ def main():
     sqs = session.resource('sqs')
     queue = sqs.get_queue_by_name(QueueName=queue_name)
 
-    schedule.every(5).seconds.do(receive_message, queue)
+    schedule.every(2).seconds.do(receive_message, queue)
 
     while True:
         schedule.run_pending()

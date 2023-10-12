@@ -9,3 +9,4 @@ pandas
 scikit-image
 plotly
 tensorflow
+Flask

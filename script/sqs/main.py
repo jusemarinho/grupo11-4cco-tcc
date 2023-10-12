@@ -9,7 +9,11 @@ import time
 
 load_dotenv()
 
-def receive_message(queue):
+def receive_message(session, queue_name):
+
+    sqs = session.resource('sqs')
+    queue = sqs.get_queue_by_name(QueueName=queue_name)
+
     try:
         messages = queue.receive_messages(MaxNumberOfMessages=10)
         if len(messages) <= 0:
@@ -24,7 +28,7 @@ def receive_message(queue):
 
             print(message_body)
 
-            update_result_recognator(endToEnd, 'Golden')
+            update_result_recognator(endToEnd, 'dog1')
 
             message.delete()
     except Exception as error:
@@ -63,11 +67,8 @@ def main():
         region_name=aws_region_name
     )
     
-    sqs = session.resource('sqs')
-    queue = sqs.get_queue_by_name(QueueName=queue_name)
-
-    schedule.every(2).seconds.do(receive_message, queue)
-
+    schedule.every(2).seconds.do(receive_message, session, queue_name)
+    
     while True:
         schedule.run_pending()
         time.sleep(1)

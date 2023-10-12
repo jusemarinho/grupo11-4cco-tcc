@@ -10,7 +10,11 @@ from client_mongodb import ClientMongoDb
 
 load_dotenv()
 
-def receive_message(queue):
+def receive_message(session, queue_name):
+
+    sqs = session.resource('sqs')
+    queue = sqs.get_queue_by_name(QueueName=queue_name)
+
     try:
         messages = queue.receive_messages(MaxNumberOfMessages=10)
         if len(messages) <= 0:
@@ -51,10 +55,7 @@ def main():
         region_name=aws_region_name
     )
     
-    sqs = session.resource('sqs')
-    queue = sqs.get_queue_by_name(QueueName=queue_name)
-
-    schedule.every(5).seconds.do(receive_message, queue)
+    schedule.every(5).seconds.do(receive_message, session, queue_name)
 
     while True:
         schedule.run_pending()

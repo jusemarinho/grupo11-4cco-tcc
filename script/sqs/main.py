@@ -1,33 +1,30 @@
-from aiohttp import ClientError
 import boto3
 from dotenv import load_dotenv
 import os
 import json
 import logging
+import schedule
+import time
 
 load_dotenv()
 
-def send_message(queue, message_body, message_attributes=None):
-    if not message_attributes:
-        message_attributes = {}
-
+def receive_message(queue):
     try:
-        response = queue.send_message(
-            MessageBody=message_body,
-            MessageAttributes=message_attributes
-        )
+        messages = queue.receive_messages(MaxNumberOfMessages=10)
 
-        if response['ResponseMetadata']['HTTPStatusCode'] == 200:
-            print("Message published.")
-        
-    except ClientError as error:
-        logging.exception("Send message failed: %s", message_body)
+        if not messages:
+            print("Not messages to receive")
+            return
+
+        for message in messages:
+            message_body = message.body
+            print("Received message:", message_body)
+            message.delete()
+    except Exception as error:
+        logging.exception("Receive message failed.")
         raise error
-    else:
-        return response
 
-
-if __name__ == "__main__":
+def main():
     aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
     aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY")
     aws_access_token = os.getenv("AWS_ACCESS_TOKEN")
@@ -44,10 +41,11 @@ if __name__ == "__main__":
     sqs = session.resource('sqs')
     queue = sqs.get_queue_by_name(QueueName=queue_name)
 
-    message = {
-        "application": "python",
-        "version": "1.0.0",
-        "dependences": ["boto3", "dotent", "os", "json"]
-    }
+    schedule.every(5).seconds.do(receive_message, queue)
 
-    send_message(queue, json.dumps(message))
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+if __name__ == "__main__":
+    main()

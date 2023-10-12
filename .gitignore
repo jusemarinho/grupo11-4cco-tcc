@@ -4,6 +4,7 @@
 /src/inteligencia_artificial/imgs_test
 /src/inteligencia_artificial/imgs_training
 cuda*
+<<<<<<< HEAD
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -165,3 +166,8 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+=======
+*.pyc
+cv2
+plt
+>>>>>>> d04fa966493edbd5b7d56c66627932730d62f94c

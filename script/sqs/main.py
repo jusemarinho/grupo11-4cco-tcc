@@ -4,6 +4,7 @@ import os
 from json import loads
 import logging
 import schedule
+import pymongo
 import time
 
 load_dotenv()
@@ -19,14 +20,34 @@ def receive_message(queue):
             message_body = loads(message.body)
 
             key_image = message_body["Records"][0]["s3"]["object"]["key"]
-            endToEnd = key_image.split("/")
-            print(endToEnd)
+            endToEnd = key_image.split("/")[1]
 
             print(message_body)
+
+            update_result_recognator(endToEnd, 'Golden')
+
             message.delete()
     except Exception as error:
         logging.exception("Receive message failed.")
         raise error
+    
+
+def update_result_recognator(endToEnd: str, result: str):
+    client = pymongo.MongoClient("mongodb://localhost:27017")  
+
+    db = client["ACHEI_O_BICHO"]
+    colecao = db["RECOGNIZE_PET"]
+
+    endToEnd_procurado = endToEnd
+
+    novo_resultRecognator = result
+
+    filtro = {"endToEnd": endToEnd_procurado}
+    atualizacao = {"$set": {"resultRecognator": novo_resultRecognator}}
+
+    colecao.update_one(filtro, atualizacao)
+
+    client.close()
 
 def main():
     aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
@@ -53,22 +74,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-import pymongo
-
-def update_result_recognator(endToEnd: str, result: str):
-    client = pymongo.MongoClient("mongodb://localhost:27017")  
-
-    db = client["ACHEI_O_BICHO"]
-    colecao = db["RECOGNIZE_PET"]
-
-    endToEnd_procurado = endToEnd
-
-    novo_resultRecognator = result
-
-    filtro = {"endToEnd": endToEnd_procurado}
-    atualizacao = {"$set": {"resultRecognator": novo_resultRecognator}}
-
-    colecao.update_one(filtro, atualizacao)
-
-    client.close()

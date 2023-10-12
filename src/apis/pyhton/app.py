@@ -40,7 +40,7 @@ def receive_message(queue):
 def main():
     aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
     aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY")
-    aws_access_token = os.getenv("AWS_ACCESS_TOKEN")
+    aws_access_token = os.getenv("AWS_SESSION_TOKEN")
     aws_region_name = os.getenv("AWS_DEFAULT_REGION")
     queue_name = os.getenv("QUEUE_NAME")
 

@@ -28,7 +28,7 @@ class FindImage:
             aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
             aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
             aws_session_token=os.getenv("AWS_SESSION_TOKEN"),
-            region_name=os.getenv("REGION_AWS"),
+            region_name=os.getenv("AWS_DEFAULT_REGION"),
         )
 
         return session
@@ -39,7 +39,7 @@ class FindImage:
             aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
             aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
             aws_session_token=os.getenv("AWS_SESSION_TOKEN"),
-            region_name=os.getenv("REGION_AWS"),
+            region_name=os.getenv("AWS_DEFAULT_REGION"),
         )
 
         return client
@@ -67,8 +67,7 @@ class FindImage:
         return resource.Bucket(bucket_name)
     
     def download(self, file_key: str, path_download: str):
-        print(type(self.s3_bucket))
-        file_object = self.s3_bucket.Object(file_key)
+        file_object = self.s3_bucket.Object(os.getenv('BUCKET_S3'), file_key)
         file_object.download_file(path_download)
 
     def find(

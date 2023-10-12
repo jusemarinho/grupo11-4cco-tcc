@@ -10,3 +10,5 @@ scikit-image
 plotly
 tensorflow
 Flask
+schedule
+pymongo

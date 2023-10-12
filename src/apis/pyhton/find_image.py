@@ -67,7 +67,6 @@ class FindImage:
         return resource.Bucket(bucket_name)
     
     def download(self, file_key: str, path_download: str):
-        print(type(self.s3_bucket))
         file_object = self.s3_bucket.Object(file_key)
         file_object.download_file(path_download)
 

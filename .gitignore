@@ -4,3 +4,6 @@
 /src/inteligencia_artificial/imgs_test
 /src/inteligencia_artificial/imgs_training
 cuda*
+*.pyc
+cv2
+plt

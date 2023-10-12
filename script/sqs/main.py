@@ -18,6 +18,10 @@ def receive_message(queue):
         for message in messages:
             message_body = loads(message.body)
 
+            key_image = message_body["Records"][0]["s3"]["object"]["key"]
+            endToEnd = key_image.split("/")
+            print(endToEnd)
+
             print(message_body)
             message.delete()
     except Exception as error:
@@ -49,3 +53,22 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+import pymongo
+
+def update_result_recognator(endToEnd: str, result: str):
+    client = pymongo.MongoClient("mongodb://localhost:27017")  
+
+    db = client["ACHEI_O_BICHO"]
+    colecao = db["RECOGNIZE_PET"]
+
+    endToEnd_procurado = endToEnd
+
+    novo_resultRecognator = result
+
+    filtro = {"endToEnd": endToEnd_procurado}
+    atualizacao = {"$set": {"resultRecognator": novo_resultRecognator}}
+
+    colecao.update_one(filtro, atualizacao)
+
+    client.close()

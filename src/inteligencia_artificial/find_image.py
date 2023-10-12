@@ -21,22 +21,55 @@ class FindImage:
             self.bucket_name = bucket_name
             self.resource = self.create_resource(resource_name, self.session)
             self.s3_bucket = self.s3(bucket_name, self.resource)
+            self.client = self.create_client_boto3()
 
     def create_session_boto3(self):
         session = boto3.Session(
-            aws_access_key_id=os.getenv("aws_access_key_id"),
-            aws_secret_access_key=os.getenv("aws_secret_access_key"),
-            aws_session_token=os.getenv("aws_session_token"),
-            region_name=os.getenv("AWS_DEFAULT_REGION"),
+            aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+            aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+            aws_session_token=os.getenv("AWS_SESSION_TOKEN"),
+            region_name=os.getenv("REGION_AWS"),
         )
 
         return session
+
+    def create_client_boto3(self): 
+        client = boto3.client(
+            's3', 
+            aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID"),
+            aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY"),
+            aws_session_token=os.getenv("AWS_SESSION_TOKEN"),
+            region_name=os.getenv("REGION_AWS"),
+        )
+
+        return client
+
+    def download_images_training(self, local_path: str, prefix: str):
+        objects = self.client.list_objects_v2(Bucket=os.getenv("BUCKET_S3"), Prefix=prefix)
+
+        for obj in objects.get('Contents', []):
+            key = obj['Key']
+            if obj['Size'] > 0:  # Ignorar pastas vazias
+                local_file_path = os.path.join(local_path, key[len(prefix):])
+                os.makedirs(os.path.dirname(local_file_path), exist_ok=True)
+                self.client.download_file(os.getenv("BUCKET_S3"), key, local_file_path)
+                print(f'Arquivo baixado: {local_file_path}')
+    
+        for obj in objects.get('CommonPrefixes', []):
+            subfolder_key = obj['Prefix']
+            subfolder_path = os.path.join(local_path, subfolder_key[len(prefix):])
+            self.download_images_training(subfolder_key, subfolder_path)
 
     def create_resource(self, resource: str, session: boto3.Session):
         return session.resource(resource)
 
     def s3(self, bucket_name, resource: str):
         return resource.Bucket(bucket_name)
+    
+    def download(self, file_key: str, path_download: str):
+        print(type(self.s3_bucket))
+        file_object = self.s3_bucket.Object(file_key)
+        file_object.download_file(path_download)
 
     def find(
         self, md5: str, user_id: str = None, id_pet: str = None, name_pet: str = None
@@ -59,6 +92,9 @@ class FindImage:
                 return
 
         return image
+    
+    
+
 
 
 if __name__ == "__main__":

@@ -1,6 +1,10 @@
 import boto3
 import os
 from dotenv import load_dotenv
+import logging
+
+logging.basicConfig(filename='script.log', level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 load_dotenv()
 
@@ -31,9 +35,9 @@ def main():
         s3.copy_object(CopySource={'Bucket': origem_bucket_name, 'Key': key},
                     Bucket=destino_bucket_name,
                     Key=key)
-        print(f"Copiado: {key}")
+        logger.info(f"Copiado: {key}")
 
-    print("Concluído!")
+    logger.info("Concluído!")
 
 if __name__ == "__main__":
     main()

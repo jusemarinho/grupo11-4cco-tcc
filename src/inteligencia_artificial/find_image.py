@@ -50,7 +50,7 @@ class FindImage:
         for obj in objects.get('Contents', []):
             key = obj['Key']
             if obj['Size'] > 0:  # Ignorar pastas vazias
-                local_file_path = os.path.join(local_path, key[len(prefix):])
+                local_file_path = os.path.join(local_path, key[len(prefix):][1:])
                 os.makedirs(os.path.dirname(local_file_path), exist_ok=True)
                 self.client.download_file(os.getenv("BUCKET_S3"), key, local_file_path)
                 print(f'Arquivo baixado: {local_file_path}')

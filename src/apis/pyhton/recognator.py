@@ -12,6 +12,7 @@ load_dotenv()
 class Recognator:
   def __init__(self) -> None:
     self.loaded_model = tf.keras.models.load_model(os.getenv('MODEL_PATH'))
+    self.loaded_model.load_weights(os.getenv('WEIGHTS_MODEL_PATH'))
     self.class_names_generated = None
     with open(os.getenv('CLASSES_FILE_PATH'), 'r') as file:
       self.class_names_generated = json.load(file)

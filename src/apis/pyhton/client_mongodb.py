@@ -2,7 +2,7 @@ import pymongo
 
 class ClientMongoDb:
 
-    def update_result_recognator(self, endToEnd: str, result: str):
+    def update_result_recognator(self, endToEnd: str, result: list):
         client = pymongo.MongoClient("mongodb://localhost:27017")  
 
         db = client["ACHEI_O_BICHO"]

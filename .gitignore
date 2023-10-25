@@ -6,6 +6,7 @@
 cuda*
 *.hdf5
 *.zip
+/src/inteligencia_artificial/modelv*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

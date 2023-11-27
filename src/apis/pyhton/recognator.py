@@ -50,28 +50,29 @@ class Recognator:
     # Fazendo a previsão
     prediction = model.predict(img_array)
 
-    # Retornando as 5 melhores previsões
+    # Retornando as melhores previsões
     predictions_values = prediction[0]
-    five_best_predictions = []
+    best_predictions = []
 
-    for _ in range(5):
+    for _ in range(8):
       highest_value = None
       highest_value_indice = None
 
       for i, value in enumerate(predictions_values):
-        if i not in five_best_predictions:
+        if i not in best_predictions:
           if highest_value is None or value > highest_value:
             highest_value = value
             highest_value_indice = i
 
       if highest_value_indice is not None:
-        five_best_predictions.append(highest_value_indice)
+        best_predictions.append(highest_value_indice)
 
-    five_best_classes = []
-    for indice in five_best_predictions:
-      five_best_classes.append(labels[f"{indice}"])
+    best_classes = []
+    for indice in best_predictions:
+      best_classes.append(labels[f"{indice}"])
 
-    return five_best_classes
+    print(best_classes)
+    return best_classes
     
     # # Obtendo a classe prevista
     # predicted_class_index = np.argmax(prediction)

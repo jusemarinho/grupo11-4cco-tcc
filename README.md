@@ -1,4 +1,4 @@
-<h1>Aplicação de IA e RP para análises e identificação de animais domésticos abandonados</h1>
+<h1>Aplicativo para auxiliar no reconhecimento e identificação de pets perdidos com a técnica de Redes Neurais Artificiais</h1>
 
 <p>Este é um projeto voltado a causa de cachorros e gatos abandonados, que por meio de reconhecimento de imagens e algoritmos de ML, 
 conseguiremos escanear o rosto, características e o fucinho de um pet perdido na rua, e se o dono tiver cadastrado o pet em nosso sistema, 
